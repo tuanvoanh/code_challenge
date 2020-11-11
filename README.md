@@ -26,6 +26,8 @@ npm run test
 https://www.getpostman.com/collections/f161270d3dab0a14cf33
 - The authorization will return in header of sign in api
 
-Try this markdown:
-
 ![alt text](https://i.ibb.co/k5gvspj/signIn.png)
+
+- Set authorization header to call pharma api
+
+![alt text](https://i.ibb.co/Y3SwbCh/get.png)
