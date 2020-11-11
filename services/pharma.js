@@ -2,7 +2,7 @@ const Pharma = require("../models/Pharma");
 
 const create = async (req) => {
     const { medicine, quality } = req.value.body;
-    const isExist = await Pharma.findOne({medicine})
+    const isExist = await Pharma.findOne({ medicine })
     if (isExist) {
         throw new Error("This medicine has already exist")
     }
@@ -14,8 +14,8 @@ const getListPagination = async (req) => {
     const page = req.value.query.page;
     const skip = page * limit;
     const listMedicine = await Pharma.find({})
-    .skip(skip)
-    .limit(limit);
+        .skip(skip)
+        .limit(limit);
     const total = await Pharma.find({}).count();
     return {
         total_item: total,
@@ -32,7 +32,14 @@ const getMedicine = async (req) => {
 
 const editMedicine = async (req) => {
     const { medicine, quality } = req.value.body;
-    return await Pharma.findOneAndUpdate({_id: req.params.id}, { medicine, quality } )
+    const id = req.value.params.id
+    const isExist = await Pharma.findOne({ medicine, _id: { $ne: id } })
+    if (isExist) {
+        throw new Error("This medicine has already exist")
+    }
+    return await Pharma.findOneAndUpdate({ _id: id }, { $set: { medicine, quality } }, {
+        new: true
+    })
 }
 
 module.exports = {

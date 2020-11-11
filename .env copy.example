@@ -1,3 +1,0 @@
-JWT_SECRET=Techbase
-MONGODB_URL=mongodb://localhost/techbase
-PORT=3000

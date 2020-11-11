@@ -1,5 +1,3 @@
-const path = require("path")
-const User = require("../models/User");
 const UserService = require("../services/user");
 
 const signIn = async (req, res, next) => {
